@@ -1,7 +1,7 @@
 # SOA-BALDE-M
 
 Install some packages:
-1. nmp
+1. npm,
 2. express
 
 
