@@ -7,7 +7,10 @@ const mongoose =  require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect(`mongodb+srv://user1:test123@cluster0.22kp4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
+mongoose.connect(
+    `mongodb+srv://user1:test123@cluster0.22kp4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+);
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
