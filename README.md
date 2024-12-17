@@ -9,4 +9,6 @@ Install packages:
     Commexion without nodemon: 
         -> node server.js (Terminal)
 4. morgan
+5. body-parser
+
 
