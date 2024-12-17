@@ -10,5 +10,7 @@ Install packages:
         -> node server.js (Terminal)
 4. morgan
 5. body-parser
+6. mongoose
+
 
 
