@@ -10,6 +10,19 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());//To extrate json date
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");//We give access to any client
+    res.header(
+        "Access-Control-Allow-Headers", 
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    if(req.method ==='OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({});
+    }
+    next();
+});
+
 //Routes which should handle requests (midelwares)
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
