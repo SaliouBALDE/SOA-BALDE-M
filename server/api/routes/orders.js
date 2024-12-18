@@ -6,7 +6,7 @@ const Order = require('../models/order');
 const Product = require('../models/product');
 const { request } = require('../../app');
 
-//Handle incoming GET requests to /ordes
+//Handle incoming GET requests to  /ordes
 router.get('/', (req, res, next) => {
     Order.find()
     .select('product quantity _id')
