@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 
 const User =  require('../models/user');
 
+//Fonctionality to creat user
 router.post('/signup', (req, res, next) => {
     User.find({ email: req.body.email })
     .exec()
@@ -46,7 +47,41 @@ router.post('/signup', (req, res, next) => {
         }
     })   
 });
-
+//Fonctionality to log in user
+router.post('/login', (req, res, next) => {
+    User.find({ email: req.body.email})
+    .exec()
+    .then(user => {
+        if (user.length < 1) {
+            return res.status(401).json({
+                message: 'Authorization failed!'
+            });
+        }
+        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+            if (err) {
+                return res.status(401).json({
+                    message: 'Authorization failed!'
+                });
+            }
+            if (result) {
+                return res.status(200).json({
+                    message: 'Authentification successful!'
+                });
+            }
+            return res.status(401).json({
+                message: 'Authorization failed!'
+            });
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+        message: "User could not login correctly...",
+        error: err
+        });
+    });
+})
+//Fonctionality de delete user
 router.delete('/:userId', (req, res, next) => {
     User.deleteOne({ _id: req.params.userId})
     .exec()
