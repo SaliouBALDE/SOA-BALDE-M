@@ -6,10 +6,11 @@ const Order = require('../models/order');
 const Product = require('../models/product');
 const { request } = require('../../app');
 
-//Handle incoming GET requests to  /ordes
+//Handle incoming GET requests to /ordes
 router.get('/', (req, res, next) => {
     Order.find()
     .select('product quantity _id')
+    .populate('product', 'name')
     .exec()
     .then(docs => {
         res.status(200).json({
@@ -74,9 +75,10 @@ router.post('/', (req, res, next) => {
         });
     });   
 });
-
+//Handle incoming GET requests to /ordes/id
 router.get('/:orderId', (req, res, next) => {
     Order.findById(req.params.orderId)
+    .populate('product')
     .exec()
     .then(order => {
         if (!order){
@@ -100,7 +102,7 @@ router.get('/:orderId', (req, res, next) => {
         })
     });
 });
-
+//Handle incoming Delete requests to /ordes
 router.delete('/:orderId', (req, res, next) => {
     Order.deleteOne( {_id: req.params.orderId})
     .exec()
