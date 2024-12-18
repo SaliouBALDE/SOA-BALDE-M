@@ -9,7 +9,7 @@ const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 
 mongoose.connect(
-    `mongodb+srv://user1:test123@cluster0.22kp4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://user1:` + process.env.MONGO_ATLAS_DATABASE_PASSWORD + `@cluster0.22kp4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 );
 mongoose.Promise = global.Promise;
 
