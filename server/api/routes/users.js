@@ -65,12 +65,18 @@ router.post('/login', (req, res, next) => {
                 });
             }
             if (result) {
-                jwt.sign({
-                    email: user[0].email,
-                    userId: user[0]._id
-                }, )
+                const token = jwt.sign({
+                    email: user[0].email, //The email
+                    userId: user[0]._id//The user id
+                }, 
+                process.env.JWT_KEY, //The jwt secret key
+                {
+                    expiresIn: "1h" //Time for the token to expire
+                },
+                );
                 return res.status(200).json({
-                    message: 'Authentification successful!'
+                    message: 'Authentification successful!',
+                    token: token
                 });
             }
             return res.status(401).json({
