@@ -17,7 +17,7 @@ mongoose.connect(
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));//To extrate url
 app.use(bodyParser.json());//To extrate json date
 
 app.use((req, res, next) => {

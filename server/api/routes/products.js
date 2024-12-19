@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const ckeckAuth = require('../middlewares/check-auth');
 
 const Product = require('../models/product');
+const checkAuth = require('../middlewares/check-auth');
 
 //Handle to get all products
 router.get('/', (req, res, next) => {
@@ -42,7 +44,7 @@ router.get('/', (req, res, next) => {
 });
 
 //Hangle to creat a product
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
     
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
@@ -102,8 +104,9 @@ router.get('/:productId', (req, res, next) => {
             res.status(500).json({error: err});
         });
 });
+
 //Handle update product
-router.patch('/:productId', (req, res, next) => {
+router.patch('/:productId', checkAuth, (req, res, next) => {
     const id = req.params.productId;
     const updateOps = {};
     for (const ops of req.body) {  //For the update we mean change juste the name or the price, not both
@@ -129,7 +132,7 @@ router.patch('/:productId', (req, res, next) => {
 });
 
 //Handle delete product by Id
-router.delete('/:productId', (req, res, next) => {
+router.delete('/:productId', checkAuth, (req, res, next) => {
     const id = req.params.productId;
     Product.deleteOne({ _id: id })
     .exec()
