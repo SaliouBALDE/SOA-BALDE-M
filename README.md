@@ -12,6 +12,7 @@ Install packages:
 5. body-parser
 6. mongoose
 7. bcrypt
+8. jsonwebtoken
 
 
 
