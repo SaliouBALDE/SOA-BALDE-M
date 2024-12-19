@@ -1,131 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const checkAuth =  require('../middlewares/check-auth')
 
-const Order = require('../models/order');
-const Product = require('../models/product');
-//const { request } = require('../../app');
+
+const  OrdersController = require('../controllers/orders');
 
 //Handle incoming GET requests to /ordes
-router.get('/', checkAuth, (req, res, next) => {
-    Order.find()
-    .select('product quantity _id')
-    .populate('product', 'name')
-    .exec()
-    .then(docs => {
-        res.status(200).json({
-            count: docs.length,
-            orders: docs.map(doc => {
-                return {
-                    _id: doc._id,
-                    product: doc.product,
-                    quantity: doc.quantity,
-                    request: {
-                        type: 'GET',
-                        url:`${req.protocol}://${req.get('host')}${req.originalUrl}/${doc._id}`
-                    }
-                }
-            })
-        });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        });
-    });
-});
+router.get('/', checkAuth, OrdersController.orders_get_all);
+
 //Handle incoming POST requests to /orders
-router.post('/', checkAuth, (req, res, next) => {
-    //Make sure we can creat an order for a product we dont have
-    Product.findById(req.body.productId)
-    .then(product => {
-        if (!product) {
-            return res.status(404).json({
-                message: 'Product not found in Database',
-                error: err
-            });
-        }
-        const order = new Order({
-            _id: new mongoose.Types.ObjectId(),
-            quantity: req.body.quantity,
-            product: req.body.productId
-        });
-        return order.save();
-    })
-    .then(result => {
-        console.log(result);
-        res.status(201).json({
-            message: 'Order created successfully!',
-            createdOrder: {
-                _id: result._id,
-                product: result.product,
-                quantity: result.quantity
-            },
-            request: {
-                type: 'GET',
-                url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${result._id}`
-            }
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            message: "Order could not be stored correctly...",
-            error: err
-        });
-    });   
-});
+router.post('/', checkAuth, OrdersController.orders_create_order);
+
 //Handle incoming GET requests to /ordes/id
-router.get('/:orderId', checkAuth, (req, res, next) => {
-    Order.findById(req.params.orderId)
-    .populate('product')
-    .exec()
-    .then(order => {
-        if (!order){
-            return res.status(404).json({
-                message: "Order not found in Database",
-                error: err
-            });
-        }
-        res.status(200).json({
-            order: order,
-            request: {
-                type: 'GET',
-                url: `${req.protocol}://${req.get('host')}/orders`
-            }
+router.get('/:orderId', checkAuth, OrdersController.orders_get_order_by_id);
 
-        });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-    });
-});
 //Handle incoming Delete requests to /ordes
-router.delete('/:orderId', checkAuth, (req, res, next) => {
-    Order.deleteOne( {_id: req.params.orderId})
-    .exec()
-    .then(result => {
-            res.status(200).json({
-            message: 'Order succefully deleted ...',
-            request: {
-                type: 'POST',
-                description: 'Link to creat a new order...',
-                url: `${req.protocol}://${req.get('host')}/orders`,
-                body: {
-                    productId: 'ID',
-                    quantity: 'Number'
-                }
-            }
+router.delete('/:orderId', checkAuth, OrdersController.orders_delete_order_by_id);
 
-        });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-    });
-});
 module.exports = router;
