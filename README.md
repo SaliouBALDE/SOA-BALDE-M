@@ -13,6 +13,7 @@ Install packages:
 6. mongoose
 7. bcrypt
 8. jsonwebtoken
+9. uuid
 
 
 
