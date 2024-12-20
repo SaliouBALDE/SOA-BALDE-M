@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
 const User =  require('../models/user');
-
 const AuthJWT = require('../helpers/jwt')
 
 exports.users_user_signup = (req, res, next) => {
@@ -64,11 +62,15 @@ exports.users_user_login = (req, res, next) => {
                 });
             }
             if (result) {
+                //Create token
                 const token = AuthJWT.createToken({
                     userId: user[0]._id,
                     email: user[0].email
                 }, 
-                process.env.JWT_KEY, 3600);
+                process.env.JWT_KEY, 
+                {
+                    expiresIN: '1h'
+                });
                 return res.status(200).json({
                     message: 'Authentification successful!',
                     token: token

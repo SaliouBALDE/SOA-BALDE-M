@@ -3,3 +3,5 @@
 20241220	21:02:08	5efe8480-baeb-4677-acf8-0c133b56f71d	GET	undefined	/products
 20241220	21:10:40	c80047d1-d2ae-49a2-a36b-cb995fd1b340	GET	undefined	/product
 20241220	21:10:53	3cd9b30f-5daa-4802-b941-23d2534c5ea8	GET	undefined	/products
+20241220	21:17:24	353eb297-0783-4807-b19a-fffed8e3c2ab	GET	undefined	/product
+20241220	21:17:30	e653effb-8063-4646-b780-debe56f39042	GET	undefined	/products
