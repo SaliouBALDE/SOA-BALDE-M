@@ -1,0 +1,5 @@
+20241220	20:55:28	fb6638c1-fdd4-4bc5-bca8-89fe2028200c	GET	undefined	/product
+20241220	20:59:10	5359145b-9b2b-4e8c-825a-a277a4313955	GET	undefined	/product
+20241220	21:02:08	5efe8480-baeb-4677-acf8-0c133b56f71d	GET	undefined	/products
+20241220	21:10:40	c80047d1-d2ae-49a2-a36b-cb995fd1b340	GET	undefined	/product
+20241220	21:10:53	3cd9b30f-5daa-4802-b941-23d2534c5ea8	GET	undefined	/products
