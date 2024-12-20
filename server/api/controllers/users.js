@@ -20,6 +20,7 @@ exports.users_user_signup = (req, res, next) => {
                         error: err
                     });
                 } else {
+                    // Create an store new user
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
                         email: req.body.email,

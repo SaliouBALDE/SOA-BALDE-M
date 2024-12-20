@@ -5,3 +5,8 @@
 20241220	21:10:53	3cd9b30f-5daa-4802-b941-23d2534c5ea8	GET	undefined	/products
 20241220	21:17:24	353eb297-0783-4807-b19a-fffed8e3c2ab	GET	undefined	/product
 20241220	21:17:30	e653effb-8063-4646-b780-debe56f39042	GET	undefined	/products
+20241221	00:00:51	d9fc900d-4be5-447f-b433-f9826dc6f4ba	POST	undefined	/users/signup
+20241221	00:01:58	6bd98444-5599-416b-8621-2e449b762204	POST	undefined	/users/signup
+20241221	00:02:36	7b5de6fb-6b10-4bc8-8293-8dffe43d50e5	POST	undefined	/users/login
+20241221	00:03:17	cffb3857-3561-4b10-858f-8008b6ea00f8	POST	undefined	/users/login
+20241221	00:04:40	4be39a57-4ee3-4faa-84a7-4fc16722a30a	POST	undefined	/users/login
