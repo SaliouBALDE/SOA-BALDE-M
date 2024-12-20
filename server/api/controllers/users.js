@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+
 
 const User =  require('../models/user');
+
+const AuthJWT = require('../helpers/jwt')
 
 exports.users_user_signup = (req, res, next) => {
     User.find({ email: req.body.email })
@@ -62,15 +64,11 @@ exports.users_user_login = (req, res, next) => {
                 });
             }
             if (result) {
-                const token = jwt.sign({
-                    email: user[0].email, //The email
-                    userId: user[0]._id//The user id
+                const token = AuthJWT.createToken({
+                    userId: user[0]._id,
+                    email: user[0].email
                 }, 
-                process.env.JWT_KEY, //The jwt secret key
-                {
-                    expiresIn: "1h" //Time for the token to expire
-                },
-                );
+                process.env.JWT_KEY, 3600);
                 return res.status(200).json({
                     message: 'Authentification successful!',
                     token: token

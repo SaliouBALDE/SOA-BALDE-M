@@ -4,10 +4,10 @@ const router = express.Router();
 const UsersController = require("../controllers/users");
 const checkAuth = require('../middlewares/check-auth');
 
-//Fonctionality to creat user
+//Fonctionality to create user
 router.post('/signup', UsersController.users_user_signup);
 
-//Fonctionality to log in user
+//Fonctionality to login user
 router.post('/login', UsersController.users_user_login);
 
 //Fonctionality de delete user
