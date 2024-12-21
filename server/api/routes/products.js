@@ -16,10 +16,10 @@ router.get('/:productId', ProductsController.products_get_porduct_by_id);
 
 //Handle update product
 router.patch('/:productId', checkAuth, checkAuth, authorize([ROLES.Admin, ROLES.Employee]), 
-ProductsController.products_update_product_by_id);
+    ProductsController.products_update_product_by_id);
 
 //Handle delete product by Id
 router.delete('/:productId', checkAuth, checkAuth, authorize([ROLES.Admin, ROLES.Employee]), 
-ProductsController.products_delete_products_by_id);
+    ProductsController.products_delete_products_by_id);
 
 module.exports = router;

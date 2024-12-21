@@ -12,7 +12,12 @@ router.post('/signup', UsersController.users_user_signup);
 //Fonctionality to login user
 router.post('/login', UsersController.users_user_login);
 
-//Fonctionality de delete user
-router.delete('/:userId', checkAuth, authorize([ROLES.Admin]), UsersController.users_user_delete_by_id);
+//Fonctionality to delete user
+router.delete('/:userId', checkAuth, authorize([ROLES.Admin]), 
+    UsersController.users_user_delete_by_id);
+
+//Update user
+router.patch('/:userId', checkAuth, authorize([ROLES.Admin]), 
+    UsersController.users_update_user_by_id);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const { verifyToken } = require("../helpers/jwt");
+const ROLES = require("../config/roles_list");
 
 const authorize = (requiredRoles) => {
   return (req, res, next) => {
@@ -16,6 +17,9 @@ const authorize = (requiredRoles) => {
       console.log(userRoles);
 
       const hasAccess = requiredRoles.some((role) => userRoles.includes(role));
+      console.log("ROLES Client", ROLES.Client);
+      console.log("ROLES Employee", ROLES.Client);
+      console.log("ROLES Admin", ROLES.Client);
 
       if (!hasAccess) return res.status(403).json({ 
         error: "Auth: Access denied" 

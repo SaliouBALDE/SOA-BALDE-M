@@ -103,7 +103,7 @@ exports.products_get_porduct_by_id = (req, res, next) => {
 exports.products_update_product_by_id = (req, res, next) => {
     const id = req.params.productId;
     const updateOps = {};
-    for (const ops of req.body) {  //For the update update one attribute at time
+    for (const ops of req.body) {  //For the update we change one attribute at time
         updateOps[ops.propName] = ops.value;
     }
     Product.updateOne({ _id: id }, {$set: updateOps })

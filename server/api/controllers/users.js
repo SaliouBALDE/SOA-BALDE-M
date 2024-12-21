@@ -109,3 +109,24 @@ exports.users_user_delete_by_id = (req, res, next) => {
         });
     })
 }
+
+exports.users_update_user_by_id = (req, res, next) => {
+    const id = req.params.userId;
+    const updateOps = {};
+    for (const ops of req.body) {  //For the update we change one attribute at time
+        updateOps[ops.propName] = ops.value;
+    }
+    User.updateOne({ _id: id }, {$set: updateOps })
+    .exec()
+    .then(result => {
+        res.status(200).json({
+            message: 'User Updated'
+        });
+    })
+    .catch( err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+}
