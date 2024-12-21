@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth =  require('../middlewares/check-auth')
 
 
-const  OrdersController = require('../controllers/orders');
+const OrdersController = require('../controllers/orders');
 
 //Handle incoming GET requests to /ordes
 router.get('/', checkAuth, OrdersController.orders_get_all);

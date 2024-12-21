@@ -39,6 +39,7 @@ exports.createToken = (data, secret, expiresIn = 3600) => {
 exports.verifyToken = (token, secret) => {
   const [headerB64, payloadB64, signature] = token.split(".");
   const newSignature = createSignature(headerB64, payloadB64, secret);
+  
   if (newSignature !== signature) {
     throw new Error("Invalid token");
   }
@@ -52,5 +53,3 @@ exports.verifyToken = (token, secret) => {
 
   return payload;
 };
-
-//module.exports = { createToken, verifyToken };

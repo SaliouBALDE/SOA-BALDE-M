@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const ROLES_LIST = require("../config/roles_list");
 
 const userSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     roles: {
         Client: {
             type: Number,
-            default: 2001
+            default: ROLES_LIST.Client
         },
         Employee: Number,
         Admin: Number

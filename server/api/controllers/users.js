@@ -23,6 +23,7 @@ exports.users_user_signup = (req, res, next) => {
                     // Create an store new user
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
+                        roles: { "Client": 2001},
                         email: req.body.email,
                         password: hash
                     }); 
@@ -66,6 +67,7 @@ exports.users_user_login = (req, res, next) => {
                 //Create token
                 const token = AuthJWT.createToken({
                     userId: user[0]._id,
+                    roles: user[0].roles,
                     email: user[0].email
                 }, 
                 process.env.JWT_KEY, 
