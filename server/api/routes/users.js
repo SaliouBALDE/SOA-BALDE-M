@@ -13,6 +13,6 @@ router.post('/signup', UsersController.users_user_signup);
 router.post('/login', UsersController.users_user_login);
 
 //Fonctionality de delete user
-router.delete('/:userId', checkAuth,  authorize([ROLES.Admin]), UsersController.users_user_delete_by_id);
+router.delete('/:userId', checkAuth, authorize([ROLES.Admin]), UsersController.users_user_delete_by_id);
 
 module.exports = router;

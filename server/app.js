@@ -6,6 +6,7 @@ const { logger } = require('./api/logEvents');
 const errorHandler= require('./api/errorHandler');
 const corsOptions =require('./api/config/corsOptions')
 const productRoutes = require('./api/routes/products');
+const serviceRoutes = require('./api/routes/services');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 
@@ -22,6 +23,7 @@ app.use(corsOptions);
 
 //Routes which should handle requests (midelwares)
 app.use('/products', productRoutes);
+app.use('/services', serviceRoutes);
 app.use('/orders', orderRoutes);
 app.use('/users', userRoutes);
 

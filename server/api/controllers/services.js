@@ -1,32 +1,30 @@
 const mongoose = require('mongoose');
-const Product = require('../models/product');
+const Service = require('../models/service');
+const service = require('../models/service');
 
-
-exports.products_get_all = (req, res, next) => {
-    Product.find()
-        .select('name price description stock _id')
+exports.services_get_all = (req, res, next) => {
+    Service.find()
+        .select('name price description availability _id')
         .exec()
         .then(docs => {
             const response = {
                 count: docs.length,
-                products: docs.map(doc => {
+                services: docs.map(doc => {
                     return {
                         name: doc.name,
                         price: doc.price,
                         description: doc.description,
-                        stock: doc.stock,
+                        availability: doc.availability,
                         _id: doc._id,
                         request: {
                             type: 'GET',
                             url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${doc._id}`
-                            //url: 'http://localhost:3500/products/' + doc._id
                         }
                     }
                 })
             };
-
+ 
             res.status(200).json(response);
-
         })
         .catch(err => {
             console.log(err);
@@ -36,27 +34,27 @@ exports.products_get_all = (req, res, next) => {
         });
 }
 
-exports.products_create_product = (req, res, next) => {
+exports.services_create_service = (req, res, next) => {
     
-    const product = new Product({
+    const service = new Service({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price: req.body.price,
         description: req.body.description,
-        stock: req.body.stock
+        price: req.body.price,
+        availability: req.body.availability
     });
     //To save the created product in the database
-    product
+    service
         .save()
         .then(result => {
             console.log(result);
             res.status(201).json({
-                message: 'Created product succesfully',
-                createdProduct: {
+                message: 'Created service succesfully',
+                createdService: {
                     name: result.name,
-                    price: result.price,
                     description: result.description,
-                    stock: result.stock,
+                    price: result.price,
+                    availability: result.availability,
                     _id: result._id,
                     request: {
                         type: 'GET',
@@ -73,19 +71,19 @@ exports.products_create_product = (req, res, next) => {
         });
 }
 
-exports.products_get_porduct_by_id = (req, res, next) => {
-    const id = req.params.productId;
-    Product.findById(id)
-        .select('name price description stock _id')
+exports.services_get_services_by_id = (req, res, next) => {
+    const id = req.params.serviceId;
+    Service.findById(id)
+        .select('name price description availability _id')
         .exec()
         .then(doc => {
             console.log("From database", doc);
             if(doc) {
                 res.status(200).json({
-                    product: doc,
+                    service: doc,
                     request: {
                         type: 'GET',
-                        url: `${req.protocol}://${req.get('host')}/products`
+                        url: `${req.protocol}://${req.get('host')}/services`
                     }
                 });
             } else {
@@ -100,24 +98,26 @@ exports.products_get_porduct_by_id = (req, res, next) => {
         });
 }
 
-exports.products_update_product_by_id = (req, res, next) => {
-    const id = req.params.productId;
-    const updateOps = {};
-    for (const ops of req.body) {  //For the update update one attribute at time
-        updateOps[ops.propName] = ops.value;
-    }
-    Product.updateOne({ _id: id }, {$set: updateOps })
+exports.services_delete_service_by_id = (req, res, next) => {
+    const id = req.params.serviceId;
+    Service.deleteOne({ _id: id })
     .exec()
     .then(result => {
         res.status(200).json({
-            message: 'Prodct Updated',
+            message: 'Service deleted',
             request: {
-                type: 'GET',
-                url: `${req.protocol}://${req.get('host')}${req.originalUrl}`
+                type: 'POST',
+                url: `${req.protocol}://${req.get('host')}/services`,
+                body: {
+                    name: 'String', 
+                    price: 'Number', 
+                    descriptio: 'String', 
+                    availability: 'Boolean' 
+                }
             }
         });
     })
-    .catch( err => {
+    .catch(err => {
         console.log(err);
         res.status(500).json({
             error: err
@@ -125,26 +125,24 @@ exports.products_update_product_by_id = (req, res, next) => {
     });
 }
 
-exports.products_delete_products_by_id = (req, res, next) => {
-    const id = req.params.productId;
-    Product.deleteOne({ _id: id })
+exports.services_update_service_by_id = (req, res, next) => {
+    const id = req.params.serviceId;
+    const updateOps = {};
+    for (const ops of req.body) {  //For the update we mean change juste one attribute at time
+        updateOps[ops.propName] = ops.value;
+    }
+    Service.updateOne({ _id: id }, {$set: updateOps })
     .exec()
     .then(result => {
         res.status(200).json({
-            message: 'Product deleted',
+            message: 'Service Updated',
             request: {
-                type: 'POST',
-                url: `${req.protocol}://${req.get('host')}/products`,
-                body: {
-                    name: 'String', 
-                    price: 'Number',
-                    description: 'String',
-                    stock: 'Number'
-                }
+                type: 'GET',
+                url: `${req.protocol}://${req.get('host')}${req.originalUrl}`
             }
         });
     })
-    .catch(err => {
+    .catch( err => {
         console.log(err);
         res.status(500).json({
             error: err
