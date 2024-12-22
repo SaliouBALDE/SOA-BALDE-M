@@ -67,9 +67,12 @@ exports.orders_create_order = async (req, res, next) => {
                 });
             }
         }
+        // Calculate the delevery date
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + 3);
     
         // Create the order
-        const newOrder = new Order({ user, items, totalAmount });
+        const newOrder = new Order({ user, items, totalAmount, deliveryDate });
         const savedOrder = await newOrder.save();
     
         res.status(201).json(savedOrder);
@@ -176,4 +179,4 @@ exports.orders_update_order_by_id = async (req, res) => {
             error: err.message 
         });
     }
-  };
+};
