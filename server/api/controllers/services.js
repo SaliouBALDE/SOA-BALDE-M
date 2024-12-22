@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 const Service = require('../models/service');
-const service = require('../models/service');
 
 exports.services_get_all = (req, res, next) => {
     Service.find()
-        .select('name price description availability _id')
+        .select('name description rate createdAt _id')
         .exec()
         .then(docs => {
             const response = {
                 count: docs.length,
                 services: docs.map(doc => {
                     return {
-                        name: doc.name,
-                        price: doc.price,
-                        description: doc.description,
-                        availability: doc.availability,
                         _id: doc._id,
+                        name: doc.name,
+                        description: doc.description,
+                        rate: doc.rate,
+                        createdAt: doc.createdAt,
                         request: {
                             type: 'GET',
                             url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${doc._id}`
@@ -40,8 +39,7 @@ exports.services_create_service = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         description: req.body.description,
-        price: req.body.price,
-        availability: req.body.availability
+        rate: req.body.rate
     });
     //To save the created product in the database
     service
@@ -53,8 +51,8 @@ exports.services_create_service = (req, res, next) => {
                 createdService: {
                     name: result.name,
                     description: result.description,
-                    price: result.price,
-                    availability: result.availability,
+                    createdAt: result.createdAt,
+                    rate: result.rate,
                     _id: result._id,
                     request: {
                         type: 'GET',
@@ -74,7 +72,7 @@ exports.services_create_service = (req, res, next) => {
 exports.services_get_services_by_id = (req, res, next) => {
     const id = req.params.serviceId;
     Service.findById(id)
-        .select('name price description availability _id')
+        .select('name description rate createdAt _id')
         .exec()
         .then(doc => {
             console.log("From database", doc);
@@ -109,10 +107,9 @@ exports.services_delete_service_by_id = (req, res, next) => {
                 type: 'POST',
                 url: `${req.protocol}://${req.get('host')}/services`,
                 body: {
-                    name: 'String', 
-                    price: 'Number', 
+                    name: 'String',
                     descriptio: 'String', 
-                    availability: 'Boolean' 
+                    rate: 'Number' 
                 }
             }
         });

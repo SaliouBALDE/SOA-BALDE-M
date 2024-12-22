@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const ROLES_LIST = require("../config/roles_list");
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     roles: {
         Client: {

@@ -15,11 +15,11 @@ router.post('/', ServicesController.services_create_service);
 router.get('/:serviceId', ServicesController.services_get_services_by_id);
 
 //Handle update product
-router.patch('/:serviceId', checkAuth, authorize([ROLES.Admin, ROLES.Employee]), 
+router.patch('/:serviceId', 
 ServicesController.services_update_service_by_id);
 
 //Handle delete product by Id
-router.delete('/:serviceId', checkAuth, authorize([ROLES.Admin, ROLES.Employee]), 
+router.delete('/:serviceId',
 ServicesController.services_delete_service_by_id);
 
 module.exports = router;

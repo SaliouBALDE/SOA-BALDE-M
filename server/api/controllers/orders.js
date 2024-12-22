@@ -2,124 +2,178 @@ const mongoose = require('mongoose');
 
 const Order = require('../models/order');
 const Product = require('../models/product');
+const Service = require('../models/service');
+const User = require('../models/user');
 
-exports.orders_get_all = (req, res, next) => {
-    Order.find()
-    .select('product quantity _id')
-    .populate('product', 'name')
-    .exec()
-    .then(docs => {
+exports.orders_get_all = async (req, res, next) => {
+    try {
+        const orders = await Order.find()
+        .populate('user', 'email')
+        .populate('items.item')
         res.status(200).json({
-            count: docs.length,
-            orders: docs.map(doc => {
-                return {
-                    _id: doc._id,
-                    product: doc.product,
-                    quantity: doc.quantity,
-                    request: {
-                        type: 'GET',
-                        url:`${req.protocol}://${req.get('host')}${req.originalUrl}/${doc._id}`
-                    }
-                }
-            })
+            orders 
         });
-    })
-    .catch(err => {
+        
+    } catch (error) {
         res.status(500).json({
-            error: err
+            error: err.message
         });
-    });
+    }
 }
 
-exports.orders_create_order = (req, res, next) => {
-    //Make sure we can creat an order for a product we dont have
-    Product.findById(req.body.productId)
-    .then(product => {
-        if (!product) {
-            return res.status(404).json({
-                message: 'Product not found in Database',
-                error: err
+exports.orders_create_order = async (req, res, next) => {
+
+    try {
+        const {user, items} = req.body;
+
+       
+        const foundUser = await User.findById(user);
+        if (!foundUser) {  //User exist ?
+            return res.status(404).json({ error: 'User not Found (404)' })
+        }
+    
+        let totalAmount = 0;
+        for (const orderItem of items) {
+            const { type, item, quantity } = orderItem;
+    
+            if (type === 'Product') {//Product exist ?
+                const product = await Product.findById(item);
+                if (!product) {
+                    return res.status(404).json({
+                        error: `Product with Id ${item} not Found!`
+                    });
+                }
+                if (product.stock < quantity) {
+                    return res.status(400).json({ 
+                        error: `Not enough stock for product ${product.name}` 
+                    });
+                }
+                totalAmount += product.price * quantity;
+        
+                // Reduce stock for the product
+                product.stock -= quantity;
+                await product.save();
+            } else if (type === 'Service') { //Service exist ?
+                const service = await Service.findById(item);
+                if (!service) {
+                    return res.status(404).json({ 
+                        error: `Service with ID ${item} not found` 
+                    });
+                }
+                totalAmount += service.rate * quantity;
+            } else {
+                return res.status(400).json({ 
+                    error: `Invalid item type: ${type}` 
+                });
+            }
+        }
+    
+        // Create the order
+        const newOrder = new Order({ user, items, totalAmount });
+        const savedOrder = await newOrder.save();
+    
+        res.status(201).json(savedOrder);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        });
+    }
+}
+
+exports.orders_get_order_by_id = async (req, res, next) => {
+    try {
+        const id = req.params.orderId;
+        console.log("id:", id);
+        const order = await Order.findById(id)
+          .populate('user', 'username email')
+          .populate('items.item');
+        if (!order) {
+            return res.status(404).json({ 
+                error: 'Order not found' 
             });
         }
-        const order = new Order({
-            _id: new mongoose.Types.ObjectId(),
-            quantity: req.body.quantity,
-            product: req.body.productId
+    
+        res.json(order);
+
+      } catch (err) {
+        res.status(500).json({ 
+            error: err.message 
         });
-        return order.save();
-    })
-    .then(result => {
-        console.log(result);
-        res.status(201).json({
-            message: 'Order created successfully!',
-            createdOrder: {
-                _id: result._id,
-                product: result.product,
-                quantity: result.quantity
-            },
-            request: {
-                type: 'GET',
-                url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${result._id}`
-            }
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            message: "Order could not be stored correctly...",
-            error: err
-        });
-    });   
+      }
 }
 
-exports.orders_get_order_by_id = (req, res, next) => {
-    Order.findById(req.params.orderId)
-    .populate('product')
-    .exec()
-    .then(order => {
-        if (!order){
-            return res.status(404).json({
-                message: "Order not found in Database",
-                error: err
+exports.orders_delete_order_by_id = async (req, res, next) => {
+    try {
+        const id = req.params.orderId;
+        const deletedOrder = await Order.findByIdAndDelete(id);
+        if (!deletedOrder) {
+            return res.status(404).json({ 
+                error: 'Order not found' 
             });
         }
-        res.status(200).json({
-            order: order,
-            request: {
-                type: 'GET',
-                url: `${req.protocol}://${req.get('host')}/orders`
-            }
+    
+        res.json({ message: 'Order deleted successfully' });
 
+      } catch (err) {
+        res.status(500).json({ 
+            error: err.message 
         });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-    });
+      }
 }
 
-exports.orders_delete_order_by_id = (req, res, next) => {
-    Order.deleteOne( {_id: req.params.orderId})
-    .exec()
-    .then(result => {
-            res.status(200).json({
-            message: 'Order succefully deleted ...',
-            request: {
-                type: 'POST',
-                description: 'Link to creat a new order...',
-                url: `${req.protocol}://${req.get('host')}/orders`,
-                body: {
-                    productId: 'ID',
-                    quantity: 'Number'
-                }
+//modifer comme product update
+exports.orders_update_order_by_id = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { items } = req.body;
+  
+      const order = await Order.findById(id);
+      if (!order) {
+            return res.status(404).json({ 
+                error: 'Order not found' 
+            });
+        }
+  
+      // Update order items and recalculate total amount
+      let totalAmount = 0;
+  
+      for (const orderItem of items) {
+        const { type, item, quantity } = orderItem;
+  
+        if (type === 'Product') {
+          const product = await Product.findById(item);
+          if (!product) {
+                return res.status(404).json({ 
+                    error: `Product with ID ${item} not found` 
+                });
             }
+  
+          totalAmount += product.price * quantity;
 
+        } else if (type === 'Service') {
+          const service = await Service.findById(item);
+          if (!service) {
+                return res.status(404).json({ 
+                    error: `Service with ID ${item} not found` 
+                });
+            }
+  
+          totalAmount += service.rate * quantity;
+        } else {
+          return res.status(400).json({ 
+                error: `Invalid item type: ${type}` 
+            });
+        }
+      }
+  
+      order.items = items;
+      order.totalAmount = totalAmount;
+  
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } catch (err) {
+      res.status(500).json({
+            error: err.message 
         });
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: err
-        })
-    });
-}
+    }
+  };

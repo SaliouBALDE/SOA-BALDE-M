@@ -19,7 +19,6 @@ exports.products_get_all = (req, res, next) => {
                         request: {
                             type: 'GET',
                             url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${doc._id}`
-                            //url: 'http://localhost:3500/products/' + doc._id
                         }
                     }
                 })

@@ -9,12 +9,12 @@ const OrdersController = require('../controllers/orders');
 router.get('/', checkAuth, OrdersController.orders_get_all);
 
 //Handle incoming POST requests to /orders
-router.post('/', checkAuth, OrdersController.orders_create_order);
+router.post('/', OrdersController.orders_create_order);
 
 //Handle incoming GET requests to /ordes/id
-router.get('/:orderId', checkAuth, OrdersController.orders_get_order_by_id);
+router.get('/:orderId', OrdersController.orders_get_order_by_id);
 
 //Handle incoming Delete requests to /ordes
-router.delete('/:orderId', checkAuth, OrdersController.orders_delete_order_by_id);
+router.delete('/:orderId', OrdersController.orders_delete_order_by_id);
 
 module.exports = router;
