@@ -1,45 +1,25 @@
 const mongoose = require('mongoose');
 const Service = require('../models/service');
+const User = require('../models/user');
 
-exports.services_get_all = (req, res, next) => {
-    Service.find()
-        .select('name description rate createdAt _id')
-        .exec()
-        .then(docs => {
-            const response = {
-                count: docs.length,
-                services: docs.map(doc => {
-                    return {
-                        _id: doc._id,
-                        name: doc.name,
-                        description: doc.description,
-                        rate: doc.rate,
-                        createdAt: doc.createdAt,
-                        request: {
-                            type: 'GET',
-                            url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${doc._id}`
-                        }
-                    }
-                })
-            };
- 
-            res.status(200).json(response);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-}
+exports.services_get_all = async (req, res) => {
+    try {
+      const services = await Service.find().populate('employees', 'username email');
+      res.status(200).json(services);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+};
+  
 
-exports.services_create_service = (req, res, next) => {
+exports.services_create_service = (req, res) => {
     
     const service = new Service({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         description: req.body.description,
-        rate: req.body.rate
+        rate: req.body.rate,
+        employee: req.body.employee
     });
     //To save the created product in the database
     service
@@ -53,6 +33,7 @@ exports.services_create_service = (req, res, next) => {
                     description: result.description,
                     createdAt: result.createdAt,
                     rate: result.rate,
+                    employee: result.employee,
                     _id: result._id,
                     request: {
                         type: 'GET',
@@ -69,34 +50,20 @@ exports.services_create_service = (req, res, next) => {
         });
 }
 
-exports.services_get_services_by_id = (req, res, next) => {
-    const id = req.params.serviceId;
-    Service.findById(id)
-        .select('name description rate createdAt _id')
-        .exec()
-        .then(doc => {
-            console.log("From database", doc);
-            if(doc) {
-                res.status(200).json({
-                    service: doc,
-                    request: {
-                        type: 'GET',
-                        url: `${req.protocol}://${req.get('host')}/services`
-                    }
-                });
-            } else {
-                res.status(404).json({
-                    message: 'No valid entry found for provides Id'
-                });
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error: err});
-        });
-}
+exports.services_get_services_by_id = async (req, res) => {
+    try {
+      const { serviceId } = req.params;
+      const service = await Service.findById(serviceId).populate('employees', 'username email');
+      if (!service) {
+        return res.status(404).json({ error: 'Service not found' });
+      }
+      res.status(200).json(service);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
 
-exports.services_delete_service_by_id = (req, res, next) => {
+exports.services_delete_service_by_id = (req, res) => {
     const id = req.params.serviceId;
     Service.deleteOne({ _id: id })
     .exec()
@@ -122,7 +89,7 @@ exports.services_delete_service_by_id = (req, res, next) => {
     });
 }
 
-exports.services_update_service_by_id = (req, res, next) => {
+exports.services_update_service_by_id = (req, res) => {
     const id = req.params.serviceId;
     const updateOps = {};
     for (const ops of req.body) {  //For the update we mean change juste one attribute at time
@@ -146,3 +113,41 @@ exports.services_update_service_by_id = (req, res, next) => {
         });
     });
 }
+
+exports.servicess_assign_employees_to_service = async (req, res) => {
+
+    try {
+      const { serviceId } = req.params;
+      const { employeeIds } = req.body;
+  
+      // Validate employees
+      const employees = await User.find({ _id: { $in: employeeIds } });
+
+      if (employees.length !== employeeIds.length) {
+        return res.status(400).json({ 
+            error: 'One or more employees not found' 
+        });
+      }
+
+      // Update the service with the list of employees
+      const updatedService = await Service.findByIdAndUpdate(
+        serviceId,
+        { $addToSet: { employees: { $each: employeeIds } } }, // Avoid duplicates
+        { new: true }
+      ).populate('employees', 'username email');
+  
+      if (!updatedService) {
+        return res.status(404).json({ 
+            error: 'Service not found' 
+        });
+      }
+  
+      res.status(200).json(updatedService);
+
+    } catch (err) {
+        res.status(500).json({ 
+            //error: err.message 
+            error: 'Assign: user not found'
+        });
+    }
+};

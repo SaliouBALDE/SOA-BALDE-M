@@ -30,7 +30,7 @@ app.use('/users', userRoutes);
 app.all('*', (req, res, next) => {
     res.status(404);
     if (req.accepts('json')) {
-        res.json({ error: "404 Not Found"})
+        res.json({ error: '404 Not Found'})
     } else {
         res.type('txt').send('404 Not Found')
     }

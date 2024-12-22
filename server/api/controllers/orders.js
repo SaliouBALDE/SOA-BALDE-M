@@ -26,7 +26,6 @@ exports.orders_create_order = async (req, res, next) => {
     try {
         const {user, items} = req.body;
 
-       
         const foundUser = await User.findById(user);
         if (!foundUser) {  //User exist ?
             return res.status(404).json({ error: 'User not Found (404)' })
