@@ -29,5 +29,4 @@ router.delete('/:serviceId', checkAuth, authorize([ROLES.Admin, ROLES.Employee])
 ServicesController.services_delete_service_by_id);
 
 
-
 module.exports = router;
