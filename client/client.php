@@ -26,23 +26,44 @@ function callApi($endpoint, $method = 'GET', $data = null) {
     return json_decode($response, true);
 }
 
-function loginUser($email, $password) {
-    $data = [
-        'email' => $email,
-        'password' => $password
-    ];
-
-    $response = callApi('login', 'POST', $data);
-
-    if ($response) {
-        echo "Login successful\n";
-    } else {
-        echo "Error: Unable to connect.\n";
-        return null;
-    }
-}
 
 $email = "client42@geobios.com"; 
 $password = "tester"; // Remplacez par un mot de passe valide
-$token = loginUser($email, $password);
+//$token = loginUser($email, $password);
+
+echo "========= CLIENT MENU ========\n";
+echo "\t1. SIGNUP\n";
+echo "\t2. LOGIN\n";
+echo "\t3. GET PRODUCTS\n";
+echo "\t4. GET SERVICES\n";
+echo "\t5. MAKE ORDER\n";
+
+echo "\n Make a choice:\t";
+$choice = trim(fgetc(STDIN));
+
+switch ($choice) {
+    case '1':
+        echo "----------SIGNUP------------\n";
+        break;
+    case '2': 
+        echo "----------LOGIN------------\n";
+        echo "\n Email (client42@geobios.com):\t";
+        $email = trim(fgetc(STDIN));
+
+        echo "\n Password (tester):\t";
+        $password = trim(fgetc(STDIN));
+
+        break;
+    case '3':
+        echo "----------PRODUCTS------------\n";
+        break;
+    case '4':
+        echo "----------SERVICES------------\n";
+        break;
+    case '5':
+        echo "----------MAKE ORDER------------\n";
+        break;
+    default: 
+        echo "Invalid choice.\n";
+}
 ?>
