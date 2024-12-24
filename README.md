@@ -14,6 +14,8 @@ Install packages:
 7. bcrypt
 8. jsonwebtoken
 9. uuid
+10. php
+11. curl
 
 
 
