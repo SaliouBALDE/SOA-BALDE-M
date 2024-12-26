@@ -46,13 +46,11 @@
         ]
     ];
 
-
     if (!$token) {
         echo "Error: Unable to authenticate.\n";
         exit;
     }
 
-    // Create the service
     $serviceResponse = createService($token, $serviceDetails);
 
     if ($serviceResponse) {
