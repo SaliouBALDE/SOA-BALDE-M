@@ -268,7 +268,7 @@
                 $email = 'client42@geobios.com';
                 $password = 'tester';
 
-                $token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZiM2JkYTAwY2Y5ODA2ODk2ZjU1NDUiLCJyb2xlcyI6eyJDbGllbnQiOjIwMDF9LCJlbWFpbCI6ImNsaWVudDQyQGdlb2Jpb3MuY29tIiwiZXhwIjoiMTczNTE3MTc1NltvYmplY3QgT2JqZWN0XSJ9.wZZmsOVm_uwCGZIwVj67eIRgOlOlxQkVQWXqqNpTOaI";
+                $token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZiM2JkYTAwY2Y5ODA2ODk2ZjU1NDUiLCJyb2xlcyI6eyJDbGllbnQiOjIwMDF9LCJlbWFpbCI6ImNsaWVudDQyQGdlb2Jpb3MuY29tIiwiZXhwIjoiMTczNTIyNTkxOVtvYmplY3QgT2JqZWN0XSJ9.u3i7U-hROpXfMABeZeyoIVe8tUb_gC9nH4pm6jE6T8g";
 
                 if (!$token) {
                     echo "Error: Unable to authenticate.\n";
@@ -297,7 +297,7 @@
                 echo "----------SERVICES------------\n";
     
                 // Get the token
-                $token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZiM2JkYTAwY2Y5ODA2ODk2ZjU1NDUiLCJyb2xlcyI6eyJDbGllbnQiOjIwMDF9LCJlbWFpbCI6ImNsaWVudDQyQGdlb2Jpb3MuY29tIiwiZXhwIjoiMTczNTE3MTc1NltvYmplY3QgT2JqZWN0XSJ9.wZZmsOVm_uwCGZIwVj67eIRgOlOlxQkVQWXqqNpTOaI";
+                $token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZiM2JkYTAwY2Y5ODA2ODk2ZjU1NDUiLCJyb2xlcyI6eyJDbGllbnQiOjIwMDF9LCJlbWFpbCI6ImNsaWVudDQyQGdlb2Jpb3MuY29tIiwiZXhwIjoiMTczNTIyNTkxOVtvYmplY3QgT2JqZWN0XSJ9.u3i7U-hROpXfMABeZeyoIVe8tUb_gC9nH4pm6jE6T8g";
 
     
                 if (!$token) {
@@ -347,7 +347,7 @@
                     'totalAmount' => 14
                 ];
 
-                $token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZiM2JkYTAwY2Y5ODA2ODk2ZjU1NDUiLCJyb2xlcyI6eyJDbGllbnQiOjIwMDF9LCJlbWFpbCI6ImNsaWVudDQyQGdlb2Jpb3MuY29tIiwiZXhwIjoiMTczNTE3MTc1NltvYmplY3QgT2JqZWN0XSJ9.wZZmsOVm_uwCGZIwVj67eIRgOlOlxQkVQWXqqNpTOaI";
+                $token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzZiM2JkYTAwY2Y5ODA2ODk2ZjU1NDUiLCJyb2xlcyI6eyJDbGllbnQiOjIwMDF9LCJlbWFpbCI6ImNsaWVudDQyQGdlb2Jpb3MuY29tIiwiZXhwIjoiMTczNTIyNTkxOVtvYmplY3QgT2JqZWN0XSJ9.u3i7U-hROpXfMABeZeyoIVe8tUb_gC9nH4pm6jE6T8g";
 
     
                 if (!$token) {

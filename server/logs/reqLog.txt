@@ -602,3 +602,17 @@
 20241226	01:18:20	25903eb4-ecea-4304-b310-5769c961f9c3	GET	undefined	/services
 20241226	01:19:06	72426cd2-cb18-4aaf-9aec-0ea83c7a38dc	POST	undefined	/orders
 20241226	01:19:18	b83eed28-2e80-4e07-821e-a0c5f7a5b8fa	POST	undefined	/orders
+20241226	16:11:55	74b482d0-ded5-4e4a-bf50-98067fe1b3d1	POST	undefined	/users/signup
+20241226	16:11:59	2e160d48-e393-46d6-b894-f19e5fb1d135	POST	undefined	/users/login
+20241226	16:23:16	836a0081-0273-417a-baac-df52c0d0f980	POST	undefined	/users/login
+20241226	16:24:43	39b87183-e4b8-4a16-8c19-461ddf057181	POST	undefined	/products
+20241226	16:25:03	890a4562-f507-41cf-a206-85f7e92e95d3	GET	undefined	/products
+20241226	16:25:12	f441efac-2b5a-48e3-b955-308196b74db5	GET	undefined	/products
+20241226	16:26:12	333ef81f-9e72-47fb-af51-6e40f5d350e0	POST	undefined	/products
+20241226	16:26:35	7bd025c5-7fed-491b-b658-bd33271d0212	POST	undefined	/products
+20241226	16:29:20	6f2091a3-7e46-470b-873b-a38c5282cf9a	POST	undefined	/users/login
+20241226	16:29:20	0536143d-6ea4-4f77-8a7b-e5b109d56256	POST	undefined	/orders
+20241226	16:30:01	94a207fa-3f90-412b-a332-6d766b030a68	POST	undefined	/products
+20241226	16:34:45	169d10d6-3363-4c2c-9738-9e235fed276c	POST	undefined	/products
+20241226	16:35:04	c4181bb6-d1cf-4c83-af01-eff10afe6eb8	POST	undefined	/products
+20241226	16:38:54	2c1df75a-c148-48cb-9163-1a05a3833e22	POST	undefined	/services
