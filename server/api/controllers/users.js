@@ -23,7 +23,7 @@ exports.users_user_signup = (req, res, next) => {
                     // Create an store new user
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
-                        roles: { "Client": 2001},
+                        roles: req.body.roles || { "Client": 2001},
                         email: req.body.email,
                         password: hash
                     }); 
