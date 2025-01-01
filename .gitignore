@@ -1,3 +1,5 @@
 node_modules
 report
 .env
+server/logs
+tests/.phpunit.result.cache
