@@ -1,0 +1,1 @@
+{"version":1,"defects":{"UserSignupTest::testUserSignupWithRoleSuccess":3,"UserSignupTest::testUserSignupDuplicateEmailWithRole":3,"UserSignupTest::testUserSignupMissingRole":3},"times":{"UserSignupTest::testUserSignupWithRoleSuccess":0.055,"UserSignupTest::testUserSignupDuplicateEmailWithRole":0.023,"UserSignupTest::testUserSignupMissingRole":0.022}}

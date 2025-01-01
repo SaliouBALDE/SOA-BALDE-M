@@ -7,7 +7,7 @@
 
         protected function setUp(): void {
             // URL de l'API pour la création d'utilisateur
-            $this->apiUrl = 'http://localhost:5000/api/users/signup';
+            $this->apiUrl = 'http://localhost:3500/users/signup';
         }
 
         public function testUserSignupWithRoleSuccess() {

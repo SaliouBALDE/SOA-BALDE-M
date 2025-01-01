@@ -16,6 +16,7 @@ Install packages:
 9. uuid
 10. php
 11. curl
+12. phpunit
 
 
 
