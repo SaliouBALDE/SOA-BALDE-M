@@ -12,12 +12,12 @@
 
         public function testUserSignupWithRoleSuccess() {
             // Données pour le test avec rôle
-            $userData = [
-                'email' => 'testuserwithrole@example.com',
-                'password' => 'securepassword',
-                'roles' => [
-                    'Client' => 2001
-                ]
+            $userData = [               
+                "roles" => [
+                    "Admin" => 5150
+                ],
+                "email" => "admin005@geobios.com",
+                "password" => "tester"             
             ];
 
             // Requête POST vers l'API
@@ -32,10 +32,10 @@
         public function testUserSignupDuplicateEmailWithRole() {
             // Données pour le test (email existant avec rôle)
             $userData = [
-                'email' => 'existinguserwithrole@example.com',
-                'password' => 'securepassword',
+                'email' => 'admin005@geobios.com',
+                'password' => 'tester',
                 'roles' => [
-                    'Employee' => 2001
+                   "Admin" => 5150
                 ]
             ];
 
@@ -45,14 +45,14 @@
             // Vérifier que l'email dupliqué retourne une erreur
             $this->assertEquals(409, $response['status_code']);
             $this->assertArrayHasKey('message', $response['data']);
-            $this->assertEquals('This mail already exists', $response['data']['message']);
+           $this->assertEquals('This mail already exists', $response['data']['message']);
         }
 
         public function testUserSignupMissingRole() {
             // Données pour le test (rôle manquant)
-            $userData = [
-                'email' => 'testusernorole@example.com',
-                'password' => 'securepassword'
+            $userData = [               
+                "email" => "client005@geobios.com",
+                "password" => "tester"             
             ];
 
             // Requête POST vers l'API

@@ -1,11 +1,12 @@
-{"version":1,
+{
+    "version":1,
     "defects":{
         "UserSignupTest::testUserSignupWithRoleSuccess":3,
-        "UserSignupTest::testUserSignupDuplicateEmailWithRole":4,
-        "UserSignupTest::testUserSignupMissingRole":3},
-        "times":{
-            "UserSignupTest::testUserSignupWithRoleSuccess":0.04,
-            "UserSignupTest::testUserSignupDuplicateEmailWithRole":0.02,
-            "UserSignupTest::testUserSignupMissingRole":0.018
-            }
+        "UserSignupTest::testUserSignupMissingRole":3
+    },
+    "times":{
+        "UserSignupTest::testUserSignupWithRoleSuccess":0.04,
+        "UserSignupTest::testUserSignupDuplicateEmailWithRole":0.018,
+        "UserSignupTest::testUserSignupMissingRole":0.018
+    }
 }
