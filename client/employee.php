@@ -1,79 +1,6 @@
 <?php
     require_once("Functionnality.php");
 
-    function signupUser($roles, $email, $password) {
-                // API endpoint for user signup
-        $apiUrl = 'http://localhost:3500/users/signup';
-
-        // Data to send in the POST request
-        $data = [
-            'roles' => $roles,
-            'email' => $email,
-            'password' => $password
-        ];
-
-        // Initialize cURL
-        $ch = curl_init($apiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json'
-        ]);
-
-        // Execute the request and get the response
-        $response = curl_exec($ch);
-
-        // Handle cURL errors
-        if (curl_errno($ch)) {
-            echo "cURL Error: " . curl_error($ch) . "\n";
-            curl_close($ch);
-            return null;
-        }
-
-        // Close the cURL session
-        curl_close($ch);
-
-        // Decode the JSON response
-        return json_decode($response, true);
-    }
-
-    function loginUser($email, $password) {
-        // API endpoint for user login
-        $apiUrl = 'http://localhost:3500/users/login';
-
-        // Data to send in the POST request
-        $data = [
-            'email' => $email,
-            'password' => $password
-        ];
-
-        // Initialize cURL
-        $ch = curl_init($apiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json'
-        ]);
-
-        // Execute the request and get the response
-        $response = curl_exec($ch);
-
-        // Handle cURL errors
-        if (curl_errno($ch)) {
-            echo "cURL Error: " . curl_error($ch) . "\n";
-            curl_close($ch);
-            return null;
-        }
-
-        // Close the cURL session
-        curl_close($ch);
-
-        // Decode the JSON response
-        return json_decode($response, true);
-    }
-
     function displayMenu() {
         echo " ========= EMPLOYEE/ADMIN MENU ========= \n";
         echo "\t01. SIGNUP\n";
@@ -99,7 +26,8 @@
 
 
         echo "Choice : $choice\n";
-        $functionnalities = new Functionnality();
+        $baseUrl = 'http://localhost:3500';
+        $functionnalities = new Functionnality($baseUrl);
         
         switch ($choice) {
             case '1'://Employee Registration
@@ -131,8 +59,7 @@
                 break;
 
             case '2'://Employee Login
-                echo "----------LOGIN------------\n";
-                
+                echo "----------LOGIN------------\n";             
                 $email = (string) readline('Enter your email (employee001@geobios.com): ');
                 $password = (string) readline('Enter your password: '); 
     
@@ -151,13 +78,14 @@
             case '3'://Create Product
                  // Replace this with your actual product details
                 $productDetails = [
-                    'name' => 'Big new Product',
+                    'name' => 'Very Big new Product',
                     'description' => 'This is a description of the new product.',
                     'price' => 99.99,
                     'stock' => 100
                 ];
                 
                 $token = (string) readline('Enter the token:');
+                echo "token confirm = $token\n";
 
                 if (!$token) {
                     echo "Error: Unable to authenticate.\n";
@@ -170,12 +98,11 @@
                         echo "Error: Unable to create the product.\n";
                     }
                 }
-                
-                
                 break;
-            case '4'://Get Produdct
-                $productId = '677d52ef056646a8ec57ad6f';
+            case '4'://Get Product
                 $token = (string) readline('Enter the token:');
+                $productId = (string) readline('Enter the product Id:');
+                
                 if (!$token) {
                     echo "Error: Unable to authenticate.\n";
                     exit;

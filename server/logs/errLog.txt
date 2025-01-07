@@ -67,3 +67,8 @@
 20241226	00:24:10	7da8990a-0815-4037-9bb3-4cc910b46afa	SyntaxError: Unexpected token 'n', "null" is not valid JSON
 20241226	00:25:16	359f0933-638c-4852-8265-0f02137130c5	SyntaxError: Unexpected token 'n', "null" is not valid JSON
 20241226	00:28:58	73244722-1402-4d7f-b4aa-112acd7ee4a7	SyntaxError: Unexpected token 'n', "null" is not valid JSON
+20250107	23:51:30	2b6eaafc-8433-4bff-ae22-7b546d48847d	ReferenceError: error is not defined
+20250107	23:52:52	2b103ee5-8fb2-403c-8773-c38b7af69432	ReferenceError: error is not defined
+20250107	23:58:41	2e46ad1c-df4c-481a-bc6d-c62ee4678ec8	ReferenceError: error is not defined
+20250107	23:59:31	e7d5b452-9933-43fa-98dc-dd686cf18bb7	ReferenceError: error is not defined
+20250108	00:01:41	955a3e06-e0a3-47c9-9d57-37851ff225cc	ReferenceError: error is not defined
