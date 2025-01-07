@@ -3,3 +3,4 @@ report
 .env
 server/logs
 tests/.phpunit.result.cache
+client/samples

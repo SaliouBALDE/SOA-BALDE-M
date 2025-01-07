@@ -214,22 +214,20 @@
         echo "\t3. GET PRODUCTS\n";
         echo "\t4. GET SERVICES\n";
         echo "\t5. MAKE ORDER\n";
-        echo "\t6. EXIT\n";
-    
-        echo "\n Make a choice:\t";
+        echo "\t0. EXIT\n";
     }
 
     do {
         displayMenu();
-        $choice = trim(fgetc(STDIN));
+        $choice = (int) readline('Make a choice:');
 
         switch ($choice) {
             case '1':
                 echo "----------SIGNUP------------\n";
                 // Example usage
                 $roles = ['Client' => 2001];
-                $email = 'client99@geobios.com'; 
-                $password = 'tester';
+                $email = readline("User's email: ");
+                $password = readline("User's password: ");
     
                 $response = signupUser($roles, $email, $password);
     
@@ -369,5 +367,5 @@
             default: 
                 echo "Invalid choice.\n";
         }
-    }while($choice != 6);
+    }while($choice != 0);
 ?>
