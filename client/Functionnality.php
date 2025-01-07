@@ -1,6 +1,8 @@
 <?php
     class Functionnality {
 
+        private b
+
         function signupUser($roles, $email, $password) {
             // API endpoint for user signup
             $apiUrl = 'http://localhost:3500/users/signup';
