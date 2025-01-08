@@ -2,7 +2,7 @@
     require_once("Functionnality.php");
 
     function displayMenu() {
-        echo " ========= EMPLOYEE/ADMIN MENU ========= \n";
+        echo " ========= EMPLOYEE MENU ========= \n";
         echo "\t01. SIGNUP\n";
         echo "\t02. LOGIN\n";
         echo "\t03. CREATE PRODUCT\n";

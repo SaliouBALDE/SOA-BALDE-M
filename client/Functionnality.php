@@ -134,5 +134,15 @@
             return $this->makeRequest("/orders/$orderId", 'DELETE', [], $headers);
         }
 
+        function deleteUser($token, $userId) {
+            $headers = ['Authorization: Bearer ' .$token];
+            return $this->makeRequest("/users/$userId", 'DELETE', [], $headers);
+        }
+
+        function updateUser($token, $userId, $updates) {
+            $headers = ['Authorization: Bearer ' .$token];
+            return $this->makeRequest("/users/$userId", 'PATCH', $updates, $headers);
+        }
+
     }
 ?>
