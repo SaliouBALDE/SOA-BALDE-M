@@ -4,3 +4,4 @@ report
 server/logs
 tests/.phpunit.result.cache
 client/samples
+database/access.txt
