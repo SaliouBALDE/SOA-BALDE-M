@@ -1,6 +1,8 @@
 <?php
     require_once("Functionnality.php");
 
+    
+
     function displayMenu() {
         echo " ======== CLIENT MENU ======= \n";
         echo "\t1. SIGNUP\n";
@@ -20,7 +22,6 @@
         switch ($choice) {
             case '1':
                 echo "----------SIGNUP------------\n";
-                // Example usage
                 $roles = ['Client' => 2001];
                 $email = readline("User's email: ");
                 $password = readline("User's password: ");
@@ -64,24 +65,27 @@
                 if (!$token) {
                     echo "Error: Unable to authenticate.\n";
                     exit;
-                }
-
-                // Fetch all products
-                $products = $functionalities->getAllProducts($token);
-
-                if ($products) {
-                    echo "List of Products:\n";
-                    foreach ($products as $product) {
-                        $id = $product['_id'] ?? 'Unknown ID';
-                        $name = $product['name'] ?? 'Unknown Name';
-                        $price = $product['price'] ?? 'Unknown Price';
-
-                        echo "ID: {$id}, Name: {$name}, Price: {$price} €\n";
-                    }
                 } else {
-                    echo "Error: Unable to fetch products.\n";
+
+                    $products = $functionalities->getAllProducts                                                         ($token);
+                   
+                    if ($products) {
+                        echo "List of Products:\n";
+                        foreach ($products as $product) {
+                            $id = $product['_id'] ?? 'Unknown Id';
+                            $name = $product['name'] ?? 'Unknown Name';
+                            $description = $product['description'] ?? 'Unknown Description';
+                            $price = $product['price'] ?? 'Unknown Price';
+                            $stock = $product['stock'] ?? 'Unknown Stock';
+                    
+                            echo "Id: {$id}, Name: {$name}, Description: {$description}, Price: {$price} €, Stock: {$stock}\n";
+                        }
+                    } else {
+                        echo "Error: Unable to fetch products.\n";
+                    }
                 }
-    
+
+                
                 break;
 
             case '4':
@@ -101,9 +105,9 @@
                             $id = $service['_id'] ?? 'Unknown ID';
                             $name = $service['name'] ?? 'Unknown Name';
                             $description = $service['description'] ?? 'No Description';
-                            $price = $service['price'] ?? 'Unknown Price';
-        
-                            echo "ID: {$id}, Name: {$name}, Description: {$description}, Price: {$price} €\n";
+                            $rate = $service['rate'] ?? 'Unknown Price';
+                    
+                            echo "ID: {$id}, Name: {$name}, Description: {$description}, Rate: {$rate} €\n";
                         }
                     } else {
                         echo "Error: Unable to fetch services.\n";

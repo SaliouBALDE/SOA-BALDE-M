@@ -76,7 +76,6 @@
     
                 break;
             case '3'://Create Product
-                 // Replace this with your actual product details
                 $productDetails = [
                     'name' => 'Very Big new Product',
                     'description' => 'This is a description of the new product.',
@@ -136,7 +135,6 @@
                     echo "Error: Unable to authenticate.\n";
                     exit;
                 } else {
-                     // Update the product
                     $updateResponse = $functionnalities->updateProduct($token, $productId, $updates);
                 
                     if ($updateResponse && isset($updateResponse['message'])) {
