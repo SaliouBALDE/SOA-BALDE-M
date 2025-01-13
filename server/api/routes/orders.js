@@ -19,7 +19,7 @@ router.get('/:orderId', checkAuth,
     OrdersController.orders_get_order_by_id);
 
 //Handle incoming Delete requests to /ordes
-router.delete('/:orderId', authorize([ROLES.Admin]),
+router.delete('/:orderId', authorize([ROLES.Admin, ROLES.Employee]),
     checkAuth, OrdersController.orders_delete_order_by_id);
 
 module.exports = router;
