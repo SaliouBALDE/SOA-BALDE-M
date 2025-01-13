@@ -928,3 +928,16 @@
 20250108	02:03:43	92d70218-f15d-417e-a63a-97220782bb52	POST	undefined	/users/login
 20250108	02:04:14	087b0e1e-d62f-48c6-8561-0ff68bec07b0	DELETE	undefined	/users/677d62a2e369fe3581cb372a
 20250108	02:11:29	5bd3eedf-15bd-4dc2-b448-b30f173250df	PATCH	undefined	/users/677dce9495bb7346b66b2dd6
+20250113	16:27:08	d1c2c606-7ce2-47f3-9899-854620118ce2	POST	undefined	/users/signup
+20250113	16:38:59	229311c8-9b75-4c71-bb5f-6b13639cdfab	POST	undefined	/users/login
+20250113	16:39:48	dda62595-6912-4950-b4c8-0265e1ee98b8	GET	undefined	/products
+20250113	16:41:41	eeebfa3c-e540-49d4-bbcf-0fb52c4d53c6	POST	undefined	/products
+20250113	16:43:07	4b9caf51-189f-43c6-aa3d-7edc7ffeb0eb	POST	undefined	/services
+20250113	16:44:38	2fe14aa3-9c06-4bfb-9693-e281a7ecbc8f	POST	undefined	/services/6785348b6f38fa917f70d235/employees
+20250113	16:46:43	559bdd80-cf49-48fb-93de-b04c2aa09f0c	POST	undefined	/services/6785348b6f38fa917f70d235/employees
+20250113	16:47:33	06eaa5b6-dc8c-4a1e-8293-66618a5902fa	GET	undefined	/orders
+20250113	16:47:39	a39070b9-57ef-42ae-9d70-e0ac853816eb	GET	undefined	/products
+20250113	16:47:53	0765a4f9-9de8-452a-9b98-189c029cfa61	POST	undefined	/orders
+20250113	16:48:01	6db5b492-9c82-48d3-97f4-df034fbb1602	POST	undefined	/orders
+20250113	16:48:21	0010413d-08f9-4284-a87a-d8abf65030da	GET	undefined	/products
+20250113	16:48:37	9d5ce4db-a7a9-49ed-b61d-5d9b3f557bd5	POST	undefined	/orders

@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3500;
 
 const server = http.createServer(app);
 
-// Connect to mongoDB
+// Connect to mongoDB Compass
 connectDB();
 
 mongoose.connection.once('open', () => {
