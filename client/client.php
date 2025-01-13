@@ -20,8 +20,7 @@
         $choice = (int) readline('Make a choice:');
 
         switch ($choice) {
-            case '1':
-                echo "----------SIGNUP------------\n";
+            case '1':echo "----------SIGNUP------------\n";
                 $roles = ['Client' => 2001];
                 $email = readline("User's email: ");
                 $password = readline("User's password: ");
@@ -38,8 +37,7 @@
                 }
                 break;
 
-            case '2': 
-                echo "----------LOGIN------------\n";
+            case '2':echo "----------LOGIN-------------\n";
                 $email = (string) readline('Enter your email (abcd@test.com): ');
                 $password = (string) readline('Enter your password: '); 
     
@@ -57,9 +55,7 @@
     
                 break;
 
-            case '3':
-                echo "----------PRODUCTS------------\n";
-
+            case '3':echo "----------PRODUCTS----------\n";
                 $token = (string) readline('Enter the token:');
 
                 if (!$token) {
@@ -88,8 +84,7 @@
                 
                 break;
 
-            case '4':
-                echo "----------SERVICES------------\n";
+            case '4':echo "----------SERVICES----------\n";
                 $token = (string) readline('Enter the token:');
 
                 if (!$token) {
@@ -116,28 +111,26 @@
                 
                 break;
 
-            case '5':
-                echo "----------MAKE ORDER------------\n";
+            case '5':echo "----------MAKE ORDER--------\n";
         
                 // Replace this with your actual order details
                 $orderDetails = [
                     'user' => [
-                        '_id' => '676b3bda00cf9806896f5545', // Replace with the user's ID
-                        'email' => 'client42@geobios.com'
+                        '_id' => '678530cc6f38fa917f70d22f', // Replace with the user's ID
+                        'email' => 'client001@geobios.com'
                     ],
                     'items' => [
                         [
                             'type' => 'Product',
-                            'item' => '676832f53305b9363bfe2ead', // Replace with the product ID
+                            'item' => '678542ca6f38fa917f70d257', // Replace with the product ID
                             'quantity' => 1
                         ],
                         [
                             'type' => 'Service',
-                            'item' => '676833e63305b9363bfe2eb1', // Replace with the service ID
-                            'quantity' => 2
+                            'item' => '6785348b6f38fa917f70d235', // Replace with the service ID
+                            'quantity' => 1
                         ]
-                    ],
-                    'totalAmount' => 14
+                    ]
                 ];
                 $token = (string) readline('Enter the token:');
 
@@ -145,11 +138,9 @@
                     echo "Error: Unable to authenticate.\n";
                     exit;
                 } else {
-                    // Place the order
                     $orderResponse = $functionalities->createOrder($token, $orderDetails);
         
                     if ($orderResponse) {
-                        echo "Order placed successfully:\n";
                         print_r($orderResponse);
                     } else {
                         echo "Error: Unable to place the order.\n";
