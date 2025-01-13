@@ -1,0 +1,79 @@
+[{
+  "_id": {
+    "$oid": "676833e63305b9363bfe2eb1"
+  },
+  "name": "Formations",
+  "description": "Des formations à 1700€ avec une réduction de 100€ pour les demandeurs d'emploi.",
+  "rate": 5.6,
+  "createdAt": {
+    "$date": "2024-12-22T15:44:38.482Z"
+  },
+  "__v": 0,
+  "employees": [
+    {
+      "$oid": "6767200bb9a2cc016e93a21b"
+    },
+    {
+      "$oid": "677d46f5056646a8ec57ad64"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6768346a3305b9363bfe2eb3"
+  },
+  "name": "Analyse radiésthésie",
+  "description": "Cela correspond à une probabilité d'osciller pour un pendule. C'est-à-dire à une chance de 1/surface à chaque point de la zone concernée.",
+  "rate": 100,
+  "createdAt": {
+    "$date": "2024-12-22T15:46:50.309Z"
+  },
+  "__v": 0,
+  "employees": [
+    {
+      "$oid": "6767200bb9a2cc016e93a21b"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "676834e83305b9363bfe2eb6"
+  },
+  "name": "Faire fuir un lutin",
+  "description": "De faire fuir un lutin qui garde un puit tellurique.",
+  "rate": 5000,
+  "createdAt": {
+    "$date": "2024-12-22T15:48:56.603Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67687d89c4d85b585fe28ff3"
+  },
+  "name": "Updated Service Name",
+  "description": "You don't want to miss it",
+  "rate": 5.6,
+  "createdAt": {
+    "$date": "2024-12-22T20:58:49.613Z"
+  },
+  "__v": 0,
+  "employees": [
+    {
+      "$oid": "6767200bb9a2cc016e93a21b"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6779854ba6a60c2fac60ffb4"
+  },
+  "name": "service 7",
+  "description": "You don't want to miss it",
+  "rate": 5.6,
+  "employees": [],
+  "createdAt": {
+    "$date": "2025-01-04T19:00:27.237Z"
+  },
+  "__v": 0
+}]

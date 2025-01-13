@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "676833793305b9363bfe2eaf"
+  },
+  "name": "Purificateur tellurique",
+  "description": "Un purificateur tellurique à 4000€/pièce. Ils peuvent produire 10 unités par jours s'ils ont un pot de colle PVC, 1m de tuyau PVC et 10 bouchons.",
+  "price": 100,
+  "stock": 999,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676d75abfd019c874636f091"
+  },
+  "name": "Big new Product",
+  "description": "This is a description of the new product.",
+  "price": 99.99,
+  "stock": 100,
+  "__v": 0
+}]

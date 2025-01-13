@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "677d46f5056646a8ec57ad64"
+  },
+  "roles": {
+    "Employee": 1984,
+    "Client": 2001
+  },
+  "email": "employee001@geobios.com",
+  "password": "$2b$10$WjIKmFkkqvVMmPklOU6DsO8AqKs6xpcKacH9.DXRQwnJup3dF9EMy",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677da694e369fe3581cb378e"
+  },
+  "roles": {
+    "Client": 2001
+  },
+  "email": "client002@gmail.com",
+  "password": "$2b$10$ZVUgWhA89PDoOWtmNy4wmuhY/1AAhw8ynDOApOFI/90TK26BMkTUC",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677dcc4f95bb7346b66b2dd2"
+  },
+  "roles": {
+    "Client": 2001
+  },
+  "email": "admin002@geobios.com",
+  "password": "$2b$10$4nZVL5/iyiUFa.UCUSgY9.ImQUIN.2fwV/oSpeeC/xljMMxcfLeJ2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677dce9495bb7346b66b2dd6"
+  },
+  "roles": {
+    "Admin": 5150,
+    "Client": 2001
+  },
+  "email": "updated@geobios.com",
+  "password": "$2b$10$hng/Mh3ib0Y1iwL654wFk.2tcOF..up3c7Z4dz/Kr/93BCJ6pRt3G",
+  "__v": 0
+}]
