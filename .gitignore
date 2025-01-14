@@ -6,3 +6,4 @@ tests/.phpunit.result.cache
 client/samples
 database/access.txt
 server/.env
+report.pdf
