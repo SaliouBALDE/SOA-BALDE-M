@@ -17,8 +17,7 @@
         $choice = (int) readline('Make a choice:');
 
         switch ($choice) {
-            case '1':
-                echo "----------SIGNUP------------\n";
+            case '1':echo "----------SIGNUP------------\n";
                 $email = readline("User's email: ");
                 $password = readline("User's password: ");
 
@@ -43,8 +42,7 @@
                 }
                 break;
 
-            case '2': 
-                echo "----------LOGIN------------\n";
+            case '2':echo "----------LOGIN------------\n";
                 $email = (string) readline('Enter your email (abcd@test.com): ');
                 $password = (string) readline('Enter your password: '); 
     
@@ -62,8 +60,7 @@
     
                 break;
 
-            case '3':
-                echo "----------DELETE USER------------\n";
+            case '3':echo "----------DELETE USER------------\n";
                 $userId = (string) readline('Enter user Id:');
                 $token = (string) readline('Enter the token:');
 
@@ -81,7 +78,7 @@
                 }
     
                 break;
-            case '4':
+            case '4':echo "----------UPDATE USER------------\n";
                 $serviceId = (string) readline('Enter user Id:');
 
                 $updates = [

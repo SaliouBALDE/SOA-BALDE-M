@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "678534356f38fa917f70d233"
+  },
+  "name": "Pneumatit",
+  "description": "La pneumatit qui est de l'homéopathie pour béton",
+  "price": 12.85,
+  "stock": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678542ca6f38fa917f70d257"
+  },
+  "name": "Tellurique",
+  "description": "Un purificateur tellurique. Ils peuvent produire 10 unités par jours s'ils ont un pot de colle PVC, 1m de tuyau PVC et 10 bouchons.",
+  "price": 4000,
+  "stock": 9,
+  "__v": 0
+}]

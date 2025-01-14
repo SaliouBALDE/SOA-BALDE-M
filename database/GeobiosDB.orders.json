@@ -1,0 +1,132 @@
+[{
+  "_id": {
+    "$oid": "678535a96f38fa917f70d242"
+  },
+  "user": {
+    "$oid": "678530cc6f38fa917f70d22f"
+  },
+  "items": [
+    {
+      "type": "Product",
+      "item": {
+        "$oid": "678534356f38fa917f70d233"
+      },
+      "quantity": 10,
+      "_id": {
+        "$oid": "678535a96f38fa917f70d243"
+      }
+    }
+  ],
+  "totalAmount": 128.5,
+  "deliveryDate": {
+    "$date": "2025-01-16T15:47:53.772Z"
+  },
+  "createdAt": {
+    "$date": "2025-01-13T15:47:53.776Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678535d56f38fa917f70d24b"
+  },
+  "user": {
+    "$oid": "678530cc6f38fa917f70d22f"
+  },
+  "items": [
+    {
+      "type": "Product",
+      "item": {
+        "$oid": "678534356f38fa917f70d233"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "678535d56f38fa917f70d24c"
+      }
+    }
+  ],
+  "totalAmount": 12.85,
+  "deliveryDate": {
+    "$date": "2025-01-16T15:48:37.475Z"
+  },
+  "createdAt": {
+    "$date": "2025-01-13T15:48:37.476Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678543b06f38fa917f70d261"
+  },
+  "user": {
+    "$oid": "678530cc6f38fa917f70d22f"
+  },
+  "items": [
+    {
+      "type": "Product",
+      "item": {
+        "$oid": "678534356f38fa917f70d233"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "678543b06f38fa917f70d262"
+      }
+    },
+    {
+      "type": "Service",
+      "item": {
+        "$oid": "678543406f38fa917f70d259"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "678543b06f38fa917f70d263"
+      }
+    }
+  ],
+  "totalAmount": 512.85,
+  "deliveryDate": {
+    "$date": "2025-01-16T16:47:44.830Z"
+  },
+  "createdAt": {
+    "$date": "2025-01-13T16:47:44.831Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67859a7d6f38fa917f70d2b9"
+  },
+  "user": {
+    "$oid": "678530cc6f38fa917f70d22f"
+  },
+  "items": [
+    {
+      "type": "Product",
+      "item": {
+        "$oid": "678542ca6f38fa917f70d257"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "67859a7d6f38fa917f70d2ba"
+      }
+    },
+    {
+      "type": "Service",
+      "item": {
+        "$oid": "6785348b6f38fa917f70d235"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "67859a7d6f38fa917f70d2bb"
+      }
+    }
+  ],
+  "totalAmount": 4005.6,
+  "deliveryDate": {
+    "$date": "2025-01-16T22:58:05.995Z"
+  },
+  "createdAt": {
+    "$date": "2025-01-13T22:58:05.995Z"
+  },
+  "__v": 0
+}]

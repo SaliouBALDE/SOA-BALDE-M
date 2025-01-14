@@ -1,0 +1,47 @@
+[{
+  "_id": {
+    "$oid": "6785348b6f38fa917f70d235"
+  },
+  "name": "Formations",
+  "description": "Des formations à 1700€ avec une réduction de 100€ pour les demandeurs d'emploi.",
+  "rate": 5.6,
+  "employees": [
+    {
+      "$oid": "678530cc6f38fa917f70d22f"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-01-13T15:43:07.874Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678542506f38fa917f70d255"
+  },
+  "name": "Radiesthésie",
+  "description": "Une analyse radiesthésie d'une zone (coordonnées géographique coin top-left + largeur, hauteur).",
+  "rate": 100,
+  "employees": [],
+  "createdAt": {
+    "$date": "2025-01-13T16:41:52.362Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678543406f38fa917f70d259"
+  },
+  "name": "Chasse au lutin",
+  "description": "De faire fuir un lutin qui garde un puit tellurique.",
+  "rate": 500,
+  "employees": [
+    {
+      "$oid": "6785415b6f38fa917f70d24f"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-01-13T16:45:52.386Z"
+  },
+  "__v": 0
+}]

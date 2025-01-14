@@ -1,7 +1,8 @@
-node_modules
+server/node_modules
 report
-.env
+server/app.js
 server/logs
 tests/.phpunit.result.cache
 client/samples
 database/access.txt
+server/.env

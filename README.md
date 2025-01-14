@@ -7,7 +7,7 @@ Install packages:
     -> npm start (Terminal)
 
     Commexion without nodemon: 
-        -> node server.js (Terminal)
+        -> node --watch server.js (Terminal)
 4. morgan
 5. body-parser
 6. mongoose

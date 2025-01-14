@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB =  async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_COMPASS_URI, {
+        await mongoose.connect("mongodb://localhost:27017/GeobiosDB", {
             useUnifiedTopology: true,
             useNewUrlParser: true
         });
